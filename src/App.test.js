@@ -6,7 +6,9 @@ import { replaceCamelWithSpaces } from "./App";
 test("button has correct initial color", () => {
   render(<App />);
   // find an element with a role of button and text of 'Change to Midnight Blue'
-  const colorButton = screen.getByRole("button", { name: "Change to Midnight Blue" });
+  const colorButton = screen.getByRole("button", {
+    name: "Change to Midnight Blue",
+  });
   // expect the background color to be red
   expect(colorButton).toHaveStyle({ backgroundColor: "MediumVioletRed" });
 
@@ -15,14 +17,16 @@ test("button has correct initial color", () => {
   // expect the color button to be blue
   expect(colorButton).toHaveStyle({ backgroundColor: "MidnightBlue" });
   // expect the button text to be 'Change to red'
-  expect(colorButton.textContent).toBe("Change to Medium Violet Red");
+  expect(colorButton).toHaveTextContent("Change to Medium Violet Red");
 });
 
 // add new functional tests for a new checkbox feature
 test("initial conditions", () => {
   render(<App />);
   // check that the button starts out enabled
-  const colorButton = screen.getByRole("button", { name: "Change to Midnight Blue" });
+  const colorButton = screen.getByRole("button", {
+    name: "Change to Midnight Blue",
+  });
   expect(colorButton).toBeEnabled(); // jest-dom assertion
 
   // check that the checkbox starts out unchecked
@@ -32,7 +36,9 @@ test("initial conditions", () => {
 
 test("Checkbox disables button on first click and enables on second click", () => {
   render(<App />);
-  const colorButton = screen.getByRole("button", { name: "Change to Midnight Blue" });
+  const colorButton = screen.getByRole("button", {
+    name: "Change to Midnight Blue",
+  });
   const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
   // first click: disable the button
   fireEvent.click(checkbox);
@@ -44,7 +50,9 @@ test("Checkbox disables button on first click and enables on second click", () =
 
 test("Button turns gray when disabled", () => {
   render(<App />);
-  const colorButton = screen.getByRole("button", { name: "Change to Midnight Blue" });
+  const colorButton = screen.getByRole("button", {
+    name: "Change to Midnight Blue",
+  });
   const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
   // gray the button
   fireEvent.click(checkbox);
