@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import App from "./App";
+import { replaceCamelWithSpaces } from './App'
 
 // functional test can include multiple assertions
 test("button has correct initial color", () => {
@@ -47,18 +48,33 @@ test("Button turns gray when disabled", () => {
   const checkbox = screen.getByRole("checkbox", { name: "Disable button" });
   // gray the button
   fireEvent.click(checkbox);
-  expect(colorButton).toHaveStyle({backgroundColor: 'gray'});
+  expect(colorButton).toHaveStyle({ backgroundColor: "gray" });
   // re-enable the buton
   fireEvent.click(checkbox);
-  expect(colorButton).toHaveStyle({backgroundColor: 'red'});
-  
+  expect(colorButton).toHaveStyle({ backgroundColor: "red" });
+
   // change button to blue
   fireEvent.click(colorButton);
-  expect(colorButton).toHaveStyle({backgroundColor: 'blue'});
+  expect(colorButton).toHaveStyle({ backgroundColor: "blue" });
   // gray the button
   fireEvent.click(checkbox);
-  expect(colorButton).toHaveStyle({backgroundColor: 'gray'});
+  expect(colorButton).toHaveStyle({ backgroundColor: "gray" });
   // re-enable the buton
   fireEvent.click(checkbox);
-  expect(colorButton).toHaveStyle({backgroundColor: 'blue'});
+  expect(colorButton).toHaveStyle({ backgroundColor: "blue" });
+});
+
+// unit test for a function replaceCamelWithSpaces()
+describe("spaces before camel-case capital letters", () => {
+  test("Works for no inner capital letters", () => {
+    expect(replaceCamelWithSpaces('Red')).toBe('Red')
+  });
+
+  test("Works for one inner capital letter", () => {
+    expect(replaceCamelWithSpaces('MidnightBlue')).toBe('Midnight Blue')
+  });
+
+  test("Works for mutiple inner capital letters", () => {
+    expect(replaceCamelWithSpaces('MediumVioletRed')).toBe('Medium Violet Red')
+  });
 });
